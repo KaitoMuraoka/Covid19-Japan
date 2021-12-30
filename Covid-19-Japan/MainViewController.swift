@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Covid-19-Japan
 //
 //  Created by 村岡海人 on 2021/12/30.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         mainView()
         setUpAPI(parentView: contentView)
     }
-    
+    //MARK: -View設定
     func mainView(){
         contentView.layer.cornerRadius = 30
         contentView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         view.addSubview(contentView)
     }
     
+    //MARK: -API
     func setUpAPI(parentView: UIView){
         CovidAPI.getTotal(completion: {(result: CovidInfo.Total) -> Void in
             DispatchQueue.main.async {
@@ -47,6 +48,14 @@ class ViewController: UIViewController {
             }
         })
     }
+    
+    //MARK: -健康管理
+    @IBAction func healthCheck(_ sender: Any) {
+        
+        print("タップ")
+        performSegue(withIdentifier: "goHelthCheck", sender: self)
+    }
+    
 
 }
 

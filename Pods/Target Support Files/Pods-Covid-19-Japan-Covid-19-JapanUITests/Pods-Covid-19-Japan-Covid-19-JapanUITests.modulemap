@@ -1,0 +1,6 @@
+framework module Pods_Covid_19_Japan_Covid_19_JapanUITests {
+  umbrella header "Pods-Covid-19-Japan-Covid-19-JapanUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
