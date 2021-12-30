@@ -11,10 +11,11 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     
+    
     @IBOutlet weak var pcrLabel: UILabel!
     @IBOutlet weak var hospitalizeLabel: UILabel!
     @IBOutlet weak var positiveLabel: UILabel!
-    @IBOutlet weak var severe: UILabel!
+    @IBOutlet weak var severeLabel: UILabel!
     @IBOutlet weak var dischargeLabel: UILabel!
     @IBOutlet weak var deathLabel: UILabel!
     
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         mainView()
+        setUpAPI(parentView: contentView)
     }
     
     func mainView(){
@@ -33,8 +35,18 @@ class ViewController: UIViewController {
         view.addSubview(contentView)
     }
     
-    
-    
+    func setUpAPI(parentView: UIView){
+        CovidAPI.getTotal(completion: {(result: CovidInfo.Total) -> Void in
+            DispatchQueue.main.async {
+                self.pcrLabel.text = "\(result.pcr)"
+                self.hospitalizeLabel.text = "\(result.hospitalize)"
+                self.positiveLabel.text = "\(result.positive)"
+                self.severeLabel.text = "\(result.severe)"
+                self.dischargeLabel.text = "\(result.discharge)"
+                self.deathLabel.text = "\(result.death)"
+            }
+        })
+    }
 
 }
 
