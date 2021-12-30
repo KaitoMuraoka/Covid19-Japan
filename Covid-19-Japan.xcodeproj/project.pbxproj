@@ -16,6 +16,7 @@
 		9FB9CFAF277D23FC00595454 /* Covid_19_JapanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFAE277D23FC00595454 /* Covid_19_JapanTests.swift */; };
 		9FB9CFB9277D23FC00595454 /* Covid_19_JapanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFB8277D23FC00595454 /* Covid_19_JapanUITests.swift */; };
 		9FB9CFBB277D23FC00595454 /* Covid_19_JapanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFBA277D23FC00595454 /* Covid_19_JapanUITestsLaunchTests.swift */; };
+		9FB9CFC8277D3BB000595454 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFC7277D3BB000595454 /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9FB9CFB4277D23FC00595454 /* Covid-19-JapanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Covid-19-JapanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB9CFB8277D23FC00595454 /* Covid_19_JapanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covid_19_JapanUITests.swift; sourceTree = "<group>"; };
 		9FB9CFBA277D23FC00595454 /* Covid_19_JapanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covid_19_JapanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FB9CFC7277D3BB000595454 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				9FB9CF97277D23F900595454 /* AppDelegate.swift */,
 				9FB9CF99277D23F900595454 /* SceneDelegate.swift */,
 				9FB9CF9B277D23F900595454 /* ViewController.swift */,
+				9FB9CFC7277D3BB000595454 /* Entity.swift */,
 				9FB9CF9D277D23F900595454 /* Main.storyboard */,
 				9FB9CFA0277D23FC00595454 /* Assets.xcassets */,
 				9FB9CFA2277D23FC00595454 /* LaunchScreen.storyboard */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB9CFC8277D3BB000595454 /* Entity.swift in Sources */,
 				9FB9CF9C277D23F900595454 /* ViewController.swift in Sources */,
 				9FB9CF98277D23F900595454 /* AppDelegate.swift in Sources */,
 				9FB9CF9A277D23F900595454 /* SceneDelegate.swift in Sources */,
