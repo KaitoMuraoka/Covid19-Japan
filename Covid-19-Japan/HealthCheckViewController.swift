@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import CalculateCalendarLogic
 
 class HealthCheckViewController: UIViewController {
     
@@ -62,10 +63,13 @@ class HealthCheckViewController: UIViewController {
         view.addSubview(scrollView)
     }
     
+    //カレンダー
     func calendar(){
         let calendar = FSCalendar()
         calendar.frame = CGRect(x: 20, y: 10, width: view.frame.size.width - 40, height: 300)
         scrollView.addSubview(calendar)
+        
+        calendar.delegate = self
     }
     
     func checkLabel(){
@@ -122,7 +126,7 @@ class HealthCheckViewController: UIViewController {
         parentView.addSubview(uiSwitch)
     }
     
-    //診断環境ボタン
+    //診断完了ボタン
     func resultButton(){
         let resultButton = UIButton(type: .system)
         resultButton.frame = CGRect(x: 0, y: 820, width: 200, height: 40)
@@ -139,6 +143,62 @@ class HealthCheckViewController: UIViewController {
         print("resultButton tapped")
     }
     
-    
 
+}
+
+extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
+    
+    //delegateで紐づけた関数
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        return .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        if dateFormatter(day: date) == dateFormatter(day: Date()) {
+            return .purple
+        }
+        return .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {
+        return 0.5
+    }
+    
+    //ロジックのための自作関数
+    func dateFormatter(day: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: day)
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        //weekend
+        if judgeWeekday(date) == 1{
+            return UIColor(red: 150/255, green: 30/255, blue: 0/255, alpha: 0.9)
+        }else if judgeWeekday(date) == 7{
+            return UIColor(red: 0/255, green: 30/255, blue: 150/255, alpha: 0.9)
+        }
+        //Holiday
+        if judgeHoliday(date) {
+            return UIColor(red: 150/255, green: 30/255, blue: 0/255, alpha: 0.9)
+        }
+        return .black
+    }
+    
+    //曜日判定
+    func judgeWeekday(_ date: Date) -> Int{
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.component(.weekday, from: date)
+    }
+    
+    //祝日判定
+    func judgeHoliday(_ date: Date) -> Bool{
+        let calendear = Calendar(identifier: .gregorian)
+        let year = calendear.component(.year, from: date)
+        let month = calendear.component(.month, from: date)
+        let day = calendear.component(.day, from: date)
+        let holiday = CalculateCalendarLogic()
+        let judgeHoliday = holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+        return judgeHoliday
+    }
 }
