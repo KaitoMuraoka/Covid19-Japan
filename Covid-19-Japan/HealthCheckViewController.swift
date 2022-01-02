@@ -146,7 +146,25 @@ class HealthCheckViewController: UIViewController {
         //アラート
         let alert = UIAlertController(title: "診断を完了しますか？", message: "診断は1日1回までです", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "完了", style: .default, handler: { action in
+            var resultTitle = ""
+            var resultMessage = ""
             
+            if self.point >= 4{
+                resultTitle = "高"
+                resultMessage = "感染している可能性が比較的高いです"
+            }else if self.point >= 2{
+                resultTitle = "中"
+                resultMessage = "感染している可能性があります"
+            }else{
+                resultTitle = "低"
+                resultMessage = "感染している可能性は低いです"
+            }
+            let alert = UIAlertController(title: "感染している可能性:\(resultTitle)", message: resultMessage, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
         })
         let noAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
         alert.addAction(yesAction)
