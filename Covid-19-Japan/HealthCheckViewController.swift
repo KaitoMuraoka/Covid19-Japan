@@ -12,6 +12,7 @@ import CalculateCalendarLogic
 class HealthCheckViewController: UIViewController {
     
     let scrollView = UIScrollView()
+    var point = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,12 +112,14 @@ class HealthCheckViewController: UIViewController {
         parentView.addSubview(imageView)
     }
     
+    //スイッチ
     @objc func switchAction(sender: UISwitch){
         if sender.isOn{
-            print("on")
+            point += 1
         }else{
-            print("off")
+            point -= 1
         }
+        print("point:\(point)")
     }
     
     func createUISwitch(parentView: UIView, action: Selector){
@@ -140,6 +143,16 @@ class HealthCheckViewController: UIViewController {
         scrollView.addSubview(resultButton)
     }
     @objc func resultButtonAction(){
+        //アラート
+        let alert = UIAlertController(title: "診断を完了しますか？", message: "診断は1日1回までです", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "完了", style: .default, handler: { action in
+            
+        })
+        let noAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
+        
         print("resultButton tapped")
     }
     
