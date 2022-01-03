@@ -13,6 +13,7 @@ class HealthCheckViewController: UIViewController {
     
     let scrollView = UIScrollView()
     var point = 0
+    var today = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +70,10 @@ class HealthCheckViewController: UIViewController {
         let calendar = FSCalendar()
         calendar.frame = CGRect(x: 20, y: 10, width: view.frame.size.width - 40, height: 300)
         scrollView.addSubview(calendar)
-        
         calendar.delegate = self
+        calendar.dataSource = self
+        calendar.appearance.headerTitleColor
+        calendar.appearance.weekdayTextColor
     }
     
     func checkLabel(){
@@ -141,6 +144,13 @@ class HealthCheckViewController: UIViewController {
         resultButton.backgroundColor = #colorLiteral(red: 0.4781777263, green: 0.5065305829, blue: 0.9997205138, alpha: 1)
         resultButton.addTarget(self, action: #selector(resultButtonAction), for: [.touchUpInside, .touchUpOutside])
         scrollView.addSubview(resultButton)
+        
+        if UserDefaults.standard.string(forKey: today) != nil{
+            resultButton.isEnabled = false
+            resultButton.setTitle("診断済み", for: .normal)
+            resultButton.backgroundColor = .white
+            resultButton.setTitleColor(.gray, for: .normal)
+        }
     }
     @objc func resultButtonAction(){
         //アラート
@@ -165,6 +175,8 @@ class HealthCheckViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
+            //診断結果をローカルに保存
+            UserDefaults.standard.set(resultTitle, forKey: self.today)
         })
         let noAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
         alert.addAction(yesAction)
@@ -180,12 +192,19 @@ class HealthCheckViewController: UIViewController {
 extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
     
     //delegateで紐づけた関数
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        return .clear
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        if let result = UserDefaults.standard.string(forKey: dateFormatter(day: date)){
+            return result
+        }
+        return ""
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
+        return .init(red: 0, green: 0, blue: 0, alpha: 0.7)
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        if dateFormatter(day: date) == dateFormatter(day: Date()) {
+        if dateFormatter(day: date) == today {
             return .purple
         }
         return .clear
@@ -217,13 +236,13 @@ extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, F
     }
     
     //曜日判定
-    func judgeWeekday(_ date: Date) -> Int{
+    private func judgeWeekday(_ date: Date) -> Int{
         let calendar = Calendar(identifier: .gregorian)
         return calendar.component(.weekday, from: date)
     }
     
     //祝日判定
-    func judgeHoliday(_ date: Date) -> Bool{
+    private func judgeHoliday(_ date: Date) -> Bool{
         let calendear = Calendar(identifier: .gregorian)
         let year = calendear.component(.year, from: date)
         let month = calendear.component(.month, from: date)
