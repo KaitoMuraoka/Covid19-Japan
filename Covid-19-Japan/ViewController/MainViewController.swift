@@ -52,10 +52,15 @@ class MainViewController: UIViewController {
     //MARK: -健康管理
     @IBAction func healthCheck(_ sender: Any) {
         
-        print("タップ")
+        print("健康管理をタップ")
         performSegue(withIdentifier: "goHelthCheck", sender: self)
     }
     
+    //MARK: -県別状況
+    @IBAction func chart(_ sender: Any) {
+        print("県別状況をタップ")
+        performSegue(withIdentifier: "goChart", sender: self)
+    }
 
 }
 

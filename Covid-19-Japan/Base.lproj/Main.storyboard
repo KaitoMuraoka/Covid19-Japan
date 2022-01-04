@@ -127,6 +127,9 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="県別状況"/>
+                                <connections>
+                                    <action selector="chart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jsc-3u-HDf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zw2-QT-pTw">
                                 <rect key="frame" x="132" y="672" width="150" height="52"/>
@@ -159,11 +162,27 @@
                         <outlet property="positiveLabel" destination="wz2-05-wE2" id="mee-j9-0T1"/>
                         <outlet property="severeLabel" destination="QME-mK-3wk" id="XmH-N6-bwt"/>
                         <segue destination="NA3-8i-9Ll" kind="showDetail" identifier="goHelthCheck" id="5Gx-IV-JZW"/>
+                        <segue destination="4cD-20-4pB" kind="show" identifier="goChart" id="MaA-T5-i9v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--Chart View Controller-->
+        <scene sceneID="Vsv-Ue-6W0">
+            <objects>
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="4cD-20-4pB" customClass="ChartViewController" customModule="Covid_19_Japan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uhI-zy-V3F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tmR-W4-RpS"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v0Q-1x-ozs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1906" y="491"/>
         </scene>
         <!--Health Check View Controller-->
         <scene sceneID="bFM-yf-SLg">
@@ -179,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohg-NE-N9D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902.8985507246377" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1907" y="-161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7sv-GC-BTP">
@@ -189,8 +208,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sYH-Tg-MAE">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YiL-OR-kWZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ctp-BL-Cfq"/>
                     </connections>

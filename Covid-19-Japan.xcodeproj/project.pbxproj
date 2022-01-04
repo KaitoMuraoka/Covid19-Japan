@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62D0B78553FB8D476F28D2C6 /* Pods_Covid_19_Japan_Covid_19_JapanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE30D20D98527BB8BF3D5A7F /* Pods_Covid_19_Japan_Covid_19_JapanUITests.framework */; };
+		9F4E15B82782DFB4008E12DC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E15B72782DFB4008E12DC /* ChartViewController.swift */; };
 		9FB9CF98277D23F900595454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CF97277D23F900595454 /* AppDelegate.swift */; };
 		9FB9CF9A277D23F900595454 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CF99277D23F900595454 /* SceneDelegate.swift */; };
 		9FB9CF9C277D23F900595454 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CF9B277D23F900595454 /* MainViewController.swift */; };
@@ -47,6 +48,7 @@
 		5BC2951B27D45D780EB1DB38 /* Pods-Covid-19-JapanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-JapanTests.debug.xcconfig"; path = "Target Support Files/Pods-Covid-19-JapanTests/Pods-Covid-19-JapanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		626B575F7424F4F17CD4371A /* Pods-Covid-19-Japan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-Japan.debug.xcconfig"; path = "Target Support Files/Pods-Covid-19-Japan/Pods-Covid-19-Japan.debug.xcconfig"; sourceTree = "<group>"; };
 		7A128838E8B24791A2C1F7D6 /* Pods-Covid-19-Japan-Covid-19-JapanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-Japan-Covid-19-JapanUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covid-19-Japan-Covid-19-JapanUITests/Pods-Covid-19-Japan-Covid-19-JapanUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F4E15B72782DFB4008E12DC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		9FB9CF94277D23F900595454 /* Covid-19-Japan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid-19-Japan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB9CF97277D23F900595454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB9CF99277D23F900595454 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F4E15B62782DF7F008E12DC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9FB9CF9B277D23F900595454 /* MainViewController.swift */,
+				9FB9CFCB277D687000595454 /* HealthCheckViewController.swift */,
+				9F4E15B72782DFB4008E12DC /* ChartViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		9FB9CF8B277D23F900595454 = {
 			isa = PBXGroup;
 			children = (
@@ -124,8 +136,7 @@
 			children = (
 				9FB9CF97277D23F900595454 /* AppDelegate.swift */,
 				9FB9CF99277D23F900595454 /* SceneDelegate.swift */,
-				9FB9CF9B277D23F900595454 /* MainViewController.swift */,
-				9FB9CFCB277D687000595454 /* HealthCheckViewController.swift */,
+				9F4E15B62782DF7F008E12DC /* ViewController */,
 				9FB9CFC7277D3BB000595454 /* Entity.swift */,
 				9FB9CFC9277D407F00595454 /* API.swift */,
 				9FB9CF9D277D23F900595454 /* Main.storyboard */,
@@ -416,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB9CFC8277D3BB000595454 /* Entity.swift in Sources */,
+				9F4E15B82782DFB4008E12DC /* ChartViewController.swift in Sources */,
 				9FB9CFCC277D687000595454 /* HealthCheckViewController.swift in Sources */,
 				9FB9CF9C277D23F900595454 /* MainViewController.swift in Sources */,
 				9FB9CF98277D23F900595454 /* AppDelegate.swift in Sources */,
