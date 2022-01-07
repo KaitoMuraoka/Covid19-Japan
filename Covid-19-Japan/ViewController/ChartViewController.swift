@@ -45,7 +45,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         uiView.layer.shadowRadius = 10
         view.addSubview(uiView)
 
-        bottomLabel(uiView, prefecture, 1, 10, text: "東京", size: 30, .ultraLight, color: .black)
+        bottomLabel(uiView, prefecture, 1, 10, text: prefecture.text ?? "東京", size: 30, .ultraLight, color: .black)
         bottomLabel(uiView, pcr, 0.39, 50, text: "PCR検査数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
         bottomLabel(uiView, pcrCount, 0.39, 85, text: "22222222", size: 30, .bold, color: .blue)
         bottomLabel(uiView, cases, 1, 50, text: "感染者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
@@ -55,7 +55,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         view.backgroundColor = .systemGroupedBackground
         
         for i in 0..<CovidSingleton.shared.prefecture.count {
-            if CovidSingleton.shared.prefecture[i].name_ja == "東京" {
+            if CovidSingleton.shared.prefecture[i].name_ja == prefecture.text {
                 prefecture.text = CovidSingleton.shared.prefecture[i].name_ja
                 pcrCount.text = "\(CovidSingleton.shared.prefecture[i].pcr)"
                 casesCount.text = "\(CovidSingleton.shared.prefecture[i].cases)"

@@ -8,6 +8,8 @@
 import UIKit
 
 struct CovidAPI {
+    let today = Date()
+    
     static func getTotal(completion: @escaping (CovidInfo.Total) -> Void){
         let url = URL(string: "https://covid19-japan-web-api.now.sh/api//v1/total")
         let request = URLRequest(url: url!)
