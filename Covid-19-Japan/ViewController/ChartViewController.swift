@@ -23,13 +23,15 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     var array: [CovidInfo.Prefecture] = []
     var chartView: HorizontalBarChartView!
     var pattern = "cases"
+    
+    var serchBar = UISearchBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         appearance()
         segmentView()
-        serchBar()
+        serchBarView()
         grafView()
         
         //uiView
@@ -101,11 +103,11 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     }
     
     //MARK: -serchBar
-    func serchBar(){
-        let serchBar = UISearchBar()
+    func serchBarView(){
+        
         serchBar.frame = CGRect(x: 10, y: 130, width: view.frame.size.width - 20, height: 40)
         serchBar.delegate = self
-        serchBar.placeholder = "都道府県を感じで入力"
+        serchBar.placeholder = "都道府県を漢字で入力"
         serchBar.showsCancelButton = true
         serchBar.tintColor = .blue
         view.addSubview(serchBar)
@@ -113,10 +115,19 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        if let index = array.firstIndex(where: {$0.name_ja == searchBar.text}){
+            prefecture.text = "\(array[index].name_ja)"
+            pcrCount.text = "\(array[index].pcr)"
+            casesCount.text = "\(array[index].cases)"
+            deathsCount.text = "\(array[index].deaths)"
+        }
         print("検索ボタンが押されました")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        serchBar.text = ""
         print("検索ボタンのキャンセルが押されました")
     }
     
@@ -199,5 +210,13 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
 
 //MARK: ChartViewDelegate
 extension ChartViewController: ChartViewDelegate{
-    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        if let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] {
+            let index = dataSet.entryIndex(entry: entry)
+            prefecture.text = "\(array[index].name_ja)"
+            pcrCount.text = "\(array[index].pcr)"
+            casesCount.text = "\(array[index].cases)"
+            deaths.text = "\(array[index].deaths)"
+        }
+    }
 }
