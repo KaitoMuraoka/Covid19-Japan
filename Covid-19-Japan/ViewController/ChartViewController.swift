@@ -8,6 +8,14 @@
 import UIKit
 
 class ChartViewController: UIViewController, UISearchBarDelegate {
+    
+    var prefecture = UILabel()
+    var pcr = UILabel()
+    var pcrCount = UILabel()
+    var cases = UILabel()
+    var casesCount = UILabel()
+    var deaths = UILabel()
+    var deathsCount = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +35,23 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         uiView.layer.shadowRadius = 10
         view.addSubview(uiView)
 
-        bottomLabel(uiView, 1, 10, text: "東京", size: 30, .ultraLight, color: .black)
-        bottomLabel(uiView, 0.39, 50, text: "PCR検査数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, 0.39, 85, text: "22222222", size: 30, .bold, color: .blue)
-        bottomLabel(uiView, 1, 50, text: "感染者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, 1, 85, text: "2222222", size: 30, .bold, color: .blue)
-        bottomLabel(uiView, 1.61, 50, text: "死者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, 1.61, 85, text: "22222", size: 30, .bold, color: .blue)
+        bottomLabel(uiView, prefecture, 1, 10, text: "東京", size: 30, .ultraLight, color: .black)
+        bottomLabel(uiView, pcr, 0.39, 50, text: "PCR検査数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
+        bottomLabel(uiView, pcrCount, 0.39, 85, text: "22222222", size: 30, .bold, color: .blue)
+        bottomLabel(uiView, cases, 1, 50, text: "感染者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
+        bottomLabel(uiView, casesCount, 1, 85, text: "2222222", size: 30, .bold, color: .blue)
+        bottomLabel(uiView, deaths, 1.61, 50, text: "死者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
+        bottomLabel(uiView, deathsCount, 1.61, 85, text: "22222", size: 30, .bold, color: .blue)
         view.backgroundColor = .systemGroupedBackground
+        
+        for i in 0..<CovidSingleton.shared.prefecture.count {
+            if CovidSingleton.shared.prefecture[i].name_ja == "東京" {
+                prefecture.text = CovidSingleton.shared.prefecture[i].name_ja
+                pcrCount.text = "\(CovidSingleton.shared.prefecture[i].pcr)"
+                casesCount.text = "\(CovidSingleton.shared.prefecture[i].cases)"
+                deathsCount.text = "\(CovidSingleton.shared.prefecture[i].deaths)"
+            }
+        }
     }
     
     private func appearance(){
@@ -91,9 +108,8 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     }
     
     //MARK: -都道府県ごとの診断
-    func bottomLabel(_ parentView: UIView, _ x: CGFloat, _ y: CGFloat, text: String, size: CGFloat, _ weight: UIFont.Weight, color: UIColor){
+    func bottomLabel(_ parentView: UIView,_ label: UILabel, _ x: CGFloat, _ y: CGFloat, text: String, size: CGFloat, _ weight: UIFont.Weight, color: UIColor){
 
-        let label = UILabel()
         label.text = text
         label.textColor = color
         label.textAlignment = .center
@@ -103,8 +119,6 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         label.center.x = view.center.x * x - 10
         parentView.addSubview(label)
     }
-    
-
     
     
     

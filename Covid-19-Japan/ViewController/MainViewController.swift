@@ -11,7 +11,6 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     
-    
     @IBOutlet weak var pcrLabel: UILabel!
     @IBOutlet weak var hospitalizeLabel: UILabel!
     @IBOutlet weak var positiveLabel: UILabel!

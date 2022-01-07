@@ -21,6 +21,7 @@
 		9FB9CFC8277D3BB000595454 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFC7277D3BB000595454 /* Entity.swift */; };
 		9FB9CFCA277D407F00595454 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFC9277D407F00595454 /* API.swift */; };
 		9FB9CFCC277D687000595454 /* HealthCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9CFCB277D687000595454 /* HealthCheckViewController.swift */; };
+		9FD724132787B5D000564A40 /* CovidSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD724122787B5D000564A40 /* CovidSingleton.swift */; };
 		BFD2E41731025E772D86998F /* Pods_Covid_19_JapanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098EB6B5A903A206F08E8718 /* Pods_Covid_19_JapanTests.framework */; };
 		D88D942A96A8A0D061D198C5 /* Pods_Covid_19_Japan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C50BBCEE667D1F2520C3D2 /* Pods_Covid_19_Japan.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		9FB9CFC7277D3BB000595454 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		9FB9CFC9277D407F00595454 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		9FB9CFCB277D687000595454 /* HealthCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckViewController.swift; sourceTree = "<group>"; };
+		9FD724122787B5D000564A40 /* CovidSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidSingleton.swift; sourceTree = "<group>"; };
 		AF41700091E3717C2D075A44 /* Pods-Covid-19-Japan-Covid-19-JapanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-Japan-Covid-19-JapanUITests.release.xcconfig"; path = "Target Support Files/Pods-Covid-19-Japan-Covid-19-JapanUITests/Pods-Covid-19-Japan-Covid-19-JapanUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B3C38C894F1892BEDB788C55 /* Pods-Covid-19-Japan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-Japan.release.xcconfig"; path = "Target Support Files/Pods-Covid-19-Japan/Pods-Covid-19-Japan.release.xcconfig"; sourceTree = "<group>"; };
 		C22013706768EB78B38D875A /* Pods-Covid-19-JapanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid-19-JapanTests.release.xcconfig"; path = "Target Support Files/Pods-Covid-19-JapanTests/Pods-Covid-19-JapanTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				9FB9CFA0277D23FC00595454 /* Assets.xcassets */,
 				9FB9CFA2277D23FC00595454 /* LaunchScreen.storyboard */,
 				9FB9CFA5277D23FC00595454 /* Info.plist */,
+				9FD724122787B5D000564A40 /* CovidSingleton.swift */,
 			);
 			path = "Covid-19-Japan";
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				9FB9CF98277D23F900595454 /* AppDelegate.swift in Sources */,
 				9FB9CF9A277D23F900595454 /* SceneDelegate.swift in Sources */,
 				9FB9CFCA277D407F00595454 /* API.swift in Sources */,
+				9FD724132787B5D000564A40 /* CovidSingleton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
