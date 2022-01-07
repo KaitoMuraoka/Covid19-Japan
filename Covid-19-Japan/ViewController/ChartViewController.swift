@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class ChartViewController: UIViewController, UISearchBarDelegate {
     
@@ -16,6 +17,10 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     var casesCount = UILabel()
     var deaths = UILabel()
     var deathsCount = UILabel()
+    
+    //charts
+    var array: [CovidInfo.Prefecture] = []
+    var chartView: HorizontalBarChartView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         appearance()
         segment()
         serchBar()
+        grafView()
         
         //uiView
         let uiView = UIView()
@@ -120,6 +126,49 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         parentView.addSubview(label)
     }
     
+    //MARK: -グラフ
+    func grafView(){
+        chartView = HorizontalBarChartView(frame: CGRect(x: 0, y: 180, width: view.frame.size.width, height: 350))
+        chartView.animate(yAxisDuration: 1.0, easingOption: .easeOutCirc)
+        chartView.xAxis.labelCount = 10
+        chartView.xAxis.labelTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        chartView.doubleTapToZoomEnabled = false
+        chartView.delegate = self
+        chartView.pinchZoomEnabled = false
+        chartView.leftAxis.labelTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        chartView.xAxis.drawGridLinesEnabled = false
+        chartView.legend.enabled = false
+        chartView.rightAxis.enabled = false
+        
+        array = CovidSingleton.shared.prefecture
+        dataSet()
+    }
     
+    func dataSet(){
+        //縦軸名
+        var names: [String] = []
+        for i in 0...9 {
+            names += ["\(self.array[i].name_ja)"]
+        }
+        chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: names)
+        
+        //データの値
+        var entries: [BarChartDataEntry] = []
+        for i in 0...9 {
+            entries += [BarChartDataEntry(x: Double(i), y: Double(array[i].cases))]
+        }
+        let set = BarChartDataSet(entries: entries, label: "県別状況")
+        set.colors = [.blue]
+        set.valueTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        set.highlightColor = .white
+        chartView.data = BarChartData(dataSet: set)
+        view.addSubview(chartView)
+    }
+    
+    
+}
+
+//MARK: ChartViewDelegate
+extension ChartViewController: ChartViewDelegate{
     
 }
