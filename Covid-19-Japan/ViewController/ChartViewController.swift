@@ -19,14 +19,16 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     var deathsCount = UILabel()
     
     //charts
+    var segment = UISegmentedControl()
     var array: [CovidInfo.Prefecture] = []
     var chartView: HorizontalBarChartView!
+    var pattern = "cases"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         appearance()
-        segment()
+        segmentView()
         serchBar()
         grafView()
         
@@ -69,8 +71,8 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
-    func segment(){
-        let segment = UISegmentedControl(items: ["感染者数", "PCR数", "死者数"])
+    func segmentView(){
+        segment = UISegmentedControl(items: ["感染者数", "PCR数", "死者数"])
         segment.frame = CGRect(x: 10, y: 90, width: view.frame.size.width - 20, height: 40)
         segment.selectedSegmentTintColor = .blue
         segment.selectedSegmentIndex = 0
@@ -83,14 +85,19 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     @objc func switchAction(sender: UISegmentedControl){
         switch sender.selectedSegmentIndex {
         case 0:
+            pattern = "cases"
             print("感染者数")
         case 1:
+            pattern = "pcr"
             print("PCR数")
         case 2:
+            pattern = "deaths"
             print("死者数")
         default:
             break
         }
+        loadView()
+        viewDidLoad()
     }
     
     //MARK: -serchBar
@@ -140,7 +147,19 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         chartView.legend.enabled = false
         chartView.rightAxis.enabled = false
         
+        //データをソート
         array = CovidSingleton.shared.prefecture
+        array.sort(by: {
+            a, b -> Bool in
+            
+            if pattern == "pcr" {
+                return a.pcr > b.pcr
+            }else if pattern == "deaths" {
+                return a.deaths > b.deaths
+            }else{
+                return a.cases > b.cases
+            }
+        })
         dataSet()
     }
     
@@ -152,12 +171,22 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         }
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: names)
         
+        
         //データの値
-        var entries: [BarChartDataEntry] = []
+        var entrys: [BarChartDataEntry] = []
         for i in 0...9 {
-            entries += [BarChartDataEntry(x: Double(i), y: Double(array[i].cases))]
+            if pattern == "cases" {
+                segment.selectedSegmentIndex = 0
+                entrys += [BarChartDataEntry(x: Double(i), y: Double(self.array[i].cases))]
+            }else if pattern == "pcr"{
+                segment.selectedSegmentIndex = 1
+                entrys += [BarChartDataEntry(x: Double(i), y: Double(self.array[i].pcr))]
+            }else if pattern == "deaths"{
+                segment.selectedSegmentIndex = 2
+                entrys += [BarChartDataEntry(x: Double(i), y: Double(self.array[i].deaths))]
+            }
         }
-        let set = BarChartDataSet(entries: entries, label: "県別状況")
+        let set = BarChartDataSet(entries: entrys, label: "県別状況")
         set.colors = [.blue]
         set.valueTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
         set.highlightColor = .white
