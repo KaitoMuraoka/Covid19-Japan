@@ -141,11 +141,11 @@
 				9F4E15B62782DF7F008E12DC /* ViewController */,
 				9FB9CFC7277D3BB000595454 /* Entity.swift */,
 				9FB9CFC9277D407F00595454 /* API.swift */,
+				9FD724122787B5D000564A40 /* CovidSingleton.swift */,
 				9FB9CF9D277D23F900595454 /* Main.storyboard */,
 				9FB9CFA0277D23FC00595454 /* Assets.xcassets */,
 				9FB9CFA2277D23FC00595454 /* LaunchScreen.storyboard */,
 				9FB9CFA5277D23FC00595454 /* Info.plist */,
-				9FD724122787B5D000564A40 /* CovidSingleton.swift */,
 			);
 			path = "Covid-19-Japan";
 			sourceTree = "<group>";

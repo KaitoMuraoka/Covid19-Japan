@@ -8,7 +8,11 @@
 import UIKit
 import Charts
 
-class ChartViewController: UIViewController, UISearchBarDelegate {
+class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDelegate {
+    
+    @IBOutlet weak var uiView: UIView!
+    
+    
     
     var prefecture = UILabel()
     var pcr = UILabel()
@@ -24,21 +28,24 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
     var chartView: HorizontalBarChartView!
     var pattern = "cases"
     
-    var serchBar = UISearchBar()
+//    var serchBar = UISearchBar()
+    var serchBar = UITextField()
+    let pickerView = UIPickerView()
+    let diceArray = ["北海道", "沖縄", "青森", "岩手", "秋田", "宮城", "山形", "福島", "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川", "山梨", "長野", "新潟", "富山", "石川", "福井", "静岡", "愛知", "岐阜", "三重", "滋賀", "大阪", "京都", "兵庫", "奈良", "和歌山", "鳥取", "島根", "岡山", "広島", "山口", "香川", "愛媛", "徳島", "高知", "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島"]
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         appearance()
         segmentView()
-        serchBarView()
+//        serchBarView()
         grafView()
+        datePicker()
         
-        //uiView
-        let uiView = UIView()
-        uiView.frame = CGRect(x: 10, y: 560, width: view.frame.size.width - 20, height: 167)
+        
         uiView.layer.cornerRadius = 10
-        uiView.backgroundColor = .white
         uiView.layer.shadowColor = UIColor.black.cgColor
         uiView.layer.shadowOffset = CGSize(width: 0, height: 2)
         uiView.layer.shadowOpacity = 0.4
@@ -100,35 +107,6 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         }
         loadView()
         viewDidLoad()
-    }
-    
-    //MARK: -serchBar
-    func serchBarView(){
-        
-        serchBar.frame = CGRect(x: 10, y: 130, width: view.frame.size.width - 20, height: 40)
-        serchBar.delegate = self
-        serchBar.placeholder = "都道府県を漢字で入力"
-        serchBar.showsCancelButton = true
-        serchBar.tintColor = .blue
-        view.addSubview(serchBar)
-        view.backgroundColor = .systemGroupedBackground
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-        if let index = array.firstIndex(where: {$0.name_ja == searchBar.text}){
-            prefecture.text = "\(array[index].name_ja)"
-            pcrCount.text = "\(array[index].pcr)"
-            casesCount.text = "\(array[index].cases)"
-            deathsCount.text = "\(array[index].deaths)"
-        }
-        print("検索ボタンが押されました")
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-        serchBar.text = ""
-        print("検索ボタンのキャンセルが押されました")
     }
     
     //MARK: -都道府県ごとの診断
@@ -205,7 +183,47 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         view.addSubview(chartView)
     }
     
+    //MARK: -DatePicker
     
+    func datePicker(){
+        
+        serchBar.frame = CGRect(x: 10, y: 130, width: view.frame.size.width - 20, height: 40)
+        serchBar.tintColor = .blue
+        serchBar.placeholder = "都道府県を選択してください"
+        serchBar.textAlignment = .center
+        serchBar.layer.borderColor = CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)
+        serchBar.layer.borderWidth = 1.0
+        view.addSubview(serchBar)
+        view.backgroundColor = .systemGroupedBackground
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        toolbar.setItems([cancelItem, spaceItem, doneItem], animated: true)
+        
+        serchBar.inputView = pickerView
+        serchBar.inputAccessoryView = toolbar
+        
+        pickerView.selectRow(4, inComponent: 0, animated: false)
+        
+    }
+    
+    @objc func done(){
+        serchBar.endEditing(true)
+        serchBar.text = prefecture.text
+    }
+    
+    @objc func cancel(){
+        serchBar.endEditing(true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        serchBar.endEditing(true)
+    }
 }
 
 //MARK: ChartViewDelegate
@@ -218,5 +236,25 @@ extension ChartViewController: ChartViewDelegate{
             casesCount.text = "\(array[index].cases)"
             deaths.text = "\(array[index].deaths)"
         }
+    }
+}
+
+extension ChartViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return array.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return array[row].name_ja
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        prefecture.text = array[row].name_ja
+        
     }
 }

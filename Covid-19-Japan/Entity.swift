@@ -24,3 +24,4 @@ struct CovidInfo: Codable {
         var pcr: Int
     }
 }
+
