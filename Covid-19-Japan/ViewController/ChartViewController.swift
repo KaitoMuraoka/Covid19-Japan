@@ -28,10 +28,9 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     var chartView: HorizontalBarChartView!
     var pattern = "cases"
     
-//    var serchBar = UISearchBar()
     var serchBar = UITextField()
     let pickerView = UIPickerView()
-    let diceArray = ["北海道", "沖縄", "青森", "岩手", "秋田", "宮城", "山形", "福島", "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川", "山梨", "長野", "新潟", "富山", "石川", "福井", "静岡", "愛知", "岐阜", "三重", "滋賀", "大阪", "京都", "兵庫", "奈良", "和歌山", "鳥取", "島根", "岡山", "広島", "山口", "香川", "愛媛", "徳島", "高知", "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島"]
+    let prefectureList = ["北海道", "青森", "岩手", "秋田", "宮城", "山形", "福島", "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川", "山梨", "長野", "新潟", "富山", "石川", "福井", "静岡", "愛知", "岐阜", "三重", "滋賀", "大阪", "京都", "兵庫", "奈良", "和歌山", "鳥取", "島根", "岡山", "広島", "山口", "香川", "愛媛", "徳島", "高知", "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"]
     
     
 
@@ -40,7 +39,6 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         
         appearance()
         segmentView()
-//        serchBarView()
         grafView()
         datePicker()
         
@@ -159,7 +157,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
             names += ["\(self.array[i].name_ja)"]
         }
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: names)
-        
+
         
         //データの値
         var entrys: [BarChartDataEntry] = []
@@ -208,7 +206,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         serchBar.inputView = pickerView
         serchBar.inputAccessoryView = toolbar
         
-        pickerView.selectRow(4, inComponent: 0, animated: false)
+        pickerView.selectRow(0, inComponent: 0, animated: false)
         
     }
     
@@ -234,7 +232,7 @@ extension ChartViewController: ChartViewDelegate{
             prefecture.text = "\(array[index].name_ja)"
             pcrCount.text = "\(array[index].pcr)"
             casesCount.text = "\(array[index].cases)"
-            deaths.text = "\(array[index].deaths)"
+            deathsCount.text = "\(array[index].deaths)"
         }
     }
 }
@@ -246,15 +244,19 @@ extension ChartViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return array.count
+        return prefectureList.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return array[row].name_ja
+        return prefectureList[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        prefecture.text = array[row].name_ja
-        
+        if let index = array.firstIndex(where: {$0.name_ja == prefectureList[row]}){
+            prefecture.text = "\(array[index].name_ja)"
+            pcrCount.text = "\(array[index].pcr)"
+            casesCount.text = "\(array[index].cases)"
+            deathsCount.text = "\(array[index].deaths)"
+        }
     }
 }
