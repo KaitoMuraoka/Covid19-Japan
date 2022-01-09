@@ -9,6 +9,7 @@ target 'Covid-19-Japan' do
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
   pod 'Charts', '~> 3.6'
+  pod 'PKHUD', '~> 5.0'
 
   target 'Covid-19-JapanTests' do
     inherit! :search_paths

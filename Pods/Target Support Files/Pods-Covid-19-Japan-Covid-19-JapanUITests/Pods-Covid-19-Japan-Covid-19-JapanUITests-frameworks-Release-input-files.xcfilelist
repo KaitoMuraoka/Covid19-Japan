@@ -2,3 +2,4 @@ ${PODS_ROOT}/Target Support Files/Pods-Covid-19-Japan-Covid-19-JapanUITests/Pods
 ${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
+${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework

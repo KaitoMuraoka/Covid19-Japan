@@ -39,7 +39,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         datePicker()
         
         let uiView = UIView()
-        uiView.frame = CGRect(x: 10, y: 560, width: view.frame.size.width - 20, height: 167)
+        uiView.frame = CGRect(x: 10, y: view.frame.size.height - 250, width: view.frame.size.width - 20, height: 167)
         uiView.layer.cornerRadius = 10
         uiView.backgroundColor = .white
         uiView.layer.shadowColor = UIColor.black.cgColor
@@ -78,7 +78,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     
     func segmentView(){
         segment = UISegmentedControl(items: ["感染者数", "PCR数", "死者数"])
-        segment.frame = CGRect(x: 10, y: 90, width: view.frame.size.width - 20, height: 40)
+        segment.frame = CGRect(x: 10, y: 100, width: view.frame.size.width - 20, height: 40)
         segment.selectedSegmentTintColor = .blue
         segment.selectedSegmentIndex = 0
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
@@ -120,7 +120,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     
     //MARK: -グラフ
     func grafView(){
-        chartView = HorizontalBarChartView(frame: CGRect(x: 0, y: 180, width: view.frame.size.width, height: 350))
+        chartView = HorizontalBarChartView(frame: CGRect(x: 0, y: 200, width: view.frame.size.width, height: view.frame.size.height - 453))
         chartView.animate(yAxisDuration: 1.0, easingOption: .easeOutCirc)
         chartView.xAxis.labelCount = 10
         chartView.xAxis.labelTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
@@ -183,7 +183,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     
     func datePicker(){
         
-        serchBar.frame = CGRect(x: 10, y: 130, width: view.frame.size.width - 20, height: 40)
+        serchBar.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: 40)
         serchBar.tintColor = .blue
         serchBar.placeholder = "都道府県を選択してください"
         serchBar.textAlignment = .center

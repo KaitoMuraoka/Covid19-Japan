@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class MainViewController: UIViewController {
 
@@ -36,6 +37,7 @@ class MainViewController: UIViewController {
     
     //MARK: -API
     func setUpAPI(parentView: UIView){
+        HUD.show(.progress)
         CovidAPI.getTotal(completion: {(result: CovidInfo.Total) -> Void in
             DispatchQueue.main.async {
                 self.pcrLabel.text = "\(result.pcr)"
@@ -44,6 +46,9 @@ class MainViewController: UIViewController {
                 self.severeLabel.text = "\(result.severe)"
                 self.dischargeLabel.text = "\(result.discharge)"
                 self.deathLabel.text = "\(result.death)"
+                
+                HUD.hide(animated: true)
+                HUD.flash(.success)
             }
         })
     }
@@ -65,6 +70,12 @@ class MainViewController: UIViewController {
         print("県別状況をタップ")
         performSegue(withIdentifier: "goChart", sender: self)
     }
-
+    
+    //MARK: -リロード
+    @IBAction func reload(_ sender: Any) {
+        print("リロードをタップ")
+        setUpAPI(parentView: contentView)
+    }
+    
 }
 

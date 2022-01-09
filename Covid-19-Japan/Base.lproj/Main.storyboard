@@ -169,6 +169,9 @@
                     <navigationItem key="navigationItem" id="hwT-cU-6e5">
                         <barButtonItem key="leftBarButtonItem" image="goforward" catalog="system" id="mdJ-1O-gQR">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="reload:" destination="BYZ-38-t0r" id="jgi-Qi-4ze"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="note.text" catalog="system" id="VLR-Xh-xXh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
