@@ -72,10 +72,10 @@ class HealthCheckViewController: UIViewController {
         let calendar = FSCalendar()
         calendar.frame = CGRect(x: 20, y: 10, width: view.frame.size.width - 40, height: 300)
         scrollView.addSubview(calendar)
-        calendar.delegate = self
-        calendar.dataSource = self
         calendar.appearance.headerTitleColor
         calendar.appearance.weekdayTextColor
+        calendar.delegate = self
+        calendar.dataSource = self
     }
     
     func checkLabel(){
@@ -201,8 +201,12 @@ extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, F
         return ""
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        return .clear
+    }
+    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
-        return .red
+        return .init(red: 0, green: 0, blue: 0, alpha: 0.7)
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
