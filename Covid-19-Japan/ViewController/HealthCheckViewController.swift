@@ -18,6 +18,8 @@ class HealthCheckViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        today = dateFormatter(day: Date())
+        
         scrollView(scrollView)
         calendar()
         checkLabel()
@@ -200,12 +202,12 @@ extension HealthCheckViewController: FSCalendarDataSource, FSCalendarDelegate, F
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
-        return .init(red: 0, green: 0, blue: 0, alpha: 0.7)
+        return .red
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
         if dateFormatter(day: date) == today {
-            return .purple
+            return .blue
         }
         return .clear
     }
