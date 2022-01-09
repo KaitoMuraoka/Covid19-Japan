@@ -48,6 +48,11 @@ class MainViewController: UIViewController {
         })
     }
     
+    //MARK: -webView
+    @IBAction func webView(_ sender: Any) {
+        performSegue(withIdentifier: "goWeb", sender: self)
+    }
+    
     //MARK: -健康管理
     @IBAction func healthCheck(_ sender: Any) {
         

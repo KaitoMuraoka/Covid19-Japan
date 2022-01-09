@@ -10,10 +10,6 @@ import Charts
 
 class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var uiView: UIView!
-    
-    
-    
     var prefecture = UILabel()
     var pcr = UILabel()
     var pcrCount = UILabel()
@@ -42,8 +38,10 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         grafView()
         datePicker()
         
-        
+        let uiView = UIView()
+        uiView.frame = CGRect(x: 10, y: 560, width: view.frame.size.width - 20, height: 167)
         uiView.layer.cornerRadius = 10
+        uiView.backgroundColor = .white
         uiView.layer.shadowColor = UIColor.black.cgColor
         uiView.layer.shadowOffset = CGSize(width: 0, height: 2)
         uiView.layer.shadowOpacity = 0.4
