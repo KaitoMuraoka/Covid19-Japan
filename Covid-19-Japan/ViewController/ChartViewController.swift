@@ -48,13 +48,13 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         uiView.layer.shadowRadius = 10
         view.addSubview(uiView)
 
-        bottomLabel(uiView, prefecture, 1, 10, text: prefecture.text ?? "東京", size: 30, .ultraLight, color: .black)
-        bottomLabel(uiView, pcr, 0.39, 50, text: "PCR検査数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, pcrCount, 0.39, 85, text: "22222222", size: 30, .bold, color: .blue)
-        bottomLabel(uiView, cases, 1, 50, text: "感染者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, casesCount, 1, 85, text: "2222222", size: 30, .bold, color: .blue)
-        bottomLabel(uiView, deaths, 1.61, 50, text: "死者数", size: 15, .bold, color: UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)))
-        bottomLabel(uiView, deathsCount, 1.61, 85, text: "22222", size: 30, .bold, color: .blue)
+        bottomLabel(uiView, prefecture, 1, 10, text: prefecture.text ?? "東京", size: 30, .ultraLight, color: .darkGray)
+        bottomLabel(uiView, pcr, 0.39, 50, text: "PCR検査数", size: 15, .bold, color: .systemGreen)
+        bottomLabel(uiView, pcrCount, 0.39, 85, text: "22222222", size: 30, .bold, color: .darkGray)
+        bottomLabel(uiView, cases, 1, 50, text: "感染者数", size: 15, .bold, color: .systemGreen)
+        bottomLabel(uiView, casesCount, 1, 85, text: "2222222", size: 30, .bold, color: .darkGray)
+        bottomLabel(uiView, deaths, 1.61, 50, text: "死者数", size: 15, .bold, color: .systemGreen)
+        bottomLabel(uiView, deathsCount, 1.61, 85, text: "22222", size: 30, .bold, color: .darkGray)
         view.backgroundColor = .systemGroupedBackground
         
         for i in 0..<CovidSingleton.shared.prefecture.count {
@@ -70,7 +70,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     private func appearance(){
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        appearance.backgroundColor = .systemGreen
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -79,7 +79,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     func segmentView(){
         segment = UISegmentedControl(items: ["感染者数", "PCR数", "死者数"])
         segment.frame = CGRect(x: 10, y: 100, width: view.frame.size.width - 20, height: 40)
-        segment.selectedSegmentTintColor = .blue
+        segment.selectedSegmentTintColor = .systemGreen
         segment.selectedSegmentIndex = 0
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)], for: .normal)
@@ -123,11 +123,11 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
         chartView = HorizontalBarChartView(frame: CGRect(x: 0, y: 200, width: view.frame.size.width, height: view.frame.size.height - 453))
         chartView.animate(yAxisDuration: 1.0, easingOption: .easeOutCirc)
         chartView.xAxis.labelCount = 10
-        chartView.xAxis.labelTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        chartView.xAxis.labelTextColor = UIColor.black
         chartView.doubleTapToZoomEnabled = false
         chartView.delegate = self
         chartView.pinchZoomEnabled = false
-        chartView.leftAxis.labelTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        chartView.leftAxis.labelTextColor = UIColor.black
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.legend.enabled = false
         chartView.rightAxis.enabled = false
@@ -172,7 +172,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
             }
         }
         let set = BarChartDataSet(entries: entrys, label: "県別状況")
-        set.colors = [.blue]
+        set.colors = [.systemGreen]
         set.valueTextColor = UIColor.init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
         set.highlightColor = .white
         chartView.data = BarChartData(dataSet: set)
@@ -184,10 +184,10 @@ class ChartViewController: UIViewController, UISearchBarDelegate, UITextFieldDel
     func datePicker(){
         
         serchBar.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: 40)
-        serchBar.tintColor = .blue
+        serchBar.tintColor = .systemGreen
         serchBar.placeholder = "都道府県を選択してください"
         serchBar.textAlignment = .center
-        serchBar.layer.borderColor = CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0)
+        serchBar.layer.borderColor = CGColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1.0)
         serchBar.layer.borderWidth = 1.0
         view.addSubview(serchBar)
         view.backgroundColor = .systemGroupedBackground

@@ -8,7 +8,7 @@ target 'Covid-19-Japan' do
   # Pods for Covid-19-Japan
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
-  pod 'Charts', '~> 3.6'
+  pod 'Charts'
   pod 'PKHUD', '~> 5.0'
 
   target 'Covid-19-JapanTests' do

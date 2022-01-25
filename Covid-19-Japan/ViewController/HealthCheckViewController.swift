@@ -83,7 +83,7 @@ class HealthCheckViewController: UIViewController {
         checkLabel.text = "健康チェック"
         checkLabel.textColor = .white
         checkLabel.frame = CGRect(x: 0, y: 340, width: view.frame.size.width, height: 21)
-        checkLabel.backgroundColor = #colorLiteral(red: 0.4781777263, green: 0.5065305829, blue: 0.9997205138, alpha: 1)
+        checkLabel.backgroundColor = .systemGreen
         checkLabel.textAlignment = .center
         checkLabel.center.x = view.center.x
         scrollView.addSubview(checkLabel)
@@ -143,7 +143,7 @@ class HealthCheckViewController: UIViewController {
         resultButton.layer.cornerRadius = 5
         resultButton.setTitle("診断完了", for: .normal)
         resultButton.setTitleColor(.white, for: .normal)
-        resultButton.backgroundColor = .init(cgColor: CGColor(red: 112/255, green: 117/255, blue: 248/255, alpha: 1.0))
+        resultButton.backgroundColor = .systemGreen
         resultButton.addTarget(self, action: #selector(resultButtonAction), for: [.touchUpInside, .touchUpOutside])
         scrollView.addSubview(resultButton)
         

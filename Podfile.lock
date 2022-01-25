@@ -8,7 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - CalculateCalendarLogic
-  - Charts (~> 3.6)
+  - Charts
   - FSCalendar
   - PKHUD (~> 5.0)
 
@@ -25,6 +25,6 @@ SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
 
-PODFILE CHECKSUM: b764b1043ac8bb7974d1bbdd1a7e5205e0ddf673
+PODFILE CHECKSUM: 883f8a5827c01df0ad08020b99303cfeee5162a1
 
 COCOAPODS: 1.11.2
