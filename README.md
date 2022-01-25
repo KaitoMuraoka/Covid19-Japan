@@ -3,6 +3,10 @@
 ## 概要
 累計の感染者数と累計のPCR数、重症者数などをホーム画面に表示。健康チェックと都道府県別の感染者数、PCR数、死者数を調べることができるアプリです。
 
+![](https://user-images.githubusercontent.com/70003919/150976860-043ba3c3-97dd-4922-83b7-e0574ff78906.png)
+![](https://user-images.githubusercontent.com/70003919/150977029-7dc01de6-b16e-4932-81f0-1b31b5dc37d5.png)
+![](https://user-images.githubusercontent.com/70003919/150977112-cd702137-a55b-41a0-abe2-571978dc18ea.png)
+
 ## 使用した技術
 - Swift5
 - CocoaPod
